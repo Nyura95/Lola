@@ -1,0 +1,25 @@
+<html>
+
+<head>
+  <title>Recherche</title>
+</head>
+
+<body>
+  <input type="text" id="search" value="" />
+  <div id="main"></div>
+</body>
+<script src="./search.js"></script>
+<script>
+
+  var items = [];
+  for (let i = 0; i < 500; i++) {
+    items.push({
+      title: "Bonjour " + i,
+      tags: [i.toString()]
+    })
+  }
+
+  new Search('main', 'search', items);
+</script>
+
+</html>
