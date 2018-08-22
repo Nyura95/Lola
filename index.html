@@ -5,31 +5,40 @@
 </head>
 
 <body>
-  <input type="text" id="search" value="" placeholder="100" />
-  <input type='button' value="test" onClick="console.log(Search.getItems())" />
+  <input type="text" id="search" value="" placeholder="ogame" />
   <div id="main"></div>
 </body>
 <script src="./search.js"></script>
 <script>
 
-  var template = "<div>{{title}}</div>"; // le template de que affichera à l'utilisateur (à toi de le design)
-  var templateKeys = ["title"]; // Les keys des variables que tu as dans le template (exemple {{title}})
+  var template = "<div>"
+    + "<div style='font-weight: bold'>"
+    + "{{title}}"
+    + "</div>"
+    + "<input type='button' onClick='redirect(\"{{url}}\")' value='Aller'/>"
+    + "</div>"; // le template de que affichera à l'utilisateur (à toi de le design)
+  var templateKeys = ["title", "url"]; // Les keys des variables que tu as dans le template (exemple {{title}})
 
-  var items = [];
-  for (let i = 0; i < 500; i++) {
-    items.push({
-      title: 'Bonjour' + i, // La valeur que tu as définis dans ton template
-      tags: [i.toString()] // Ici tu mets les mots clefs, ici je mets un chiffre mais tu peux mettre tout et n'importe quoi
-    })
-  }
+  var items = [{
+    title: 'Aller vers ogame',
+    url: 'http://www.ogame.fr',
+    tags: ['ogame']
+  }, {
+    title: 'Aller vers judgehype',
+    url: 'https://www.judgehype.com/',
+    tags: ['judgehype']
+  }];
 
   var search = new Search(
     document.getElementById('main'), // Je lui passe la div main
     document.getElementById('search'), // Je lui passe l'input de recherche (celui ou on va ajouter les events)
     items, // les items à afficher
-    { template: template, templateKeys: templateKeys }); // lancement du script
+    { template: template, keys: templateKeys }); // lancement du script
 
-  console.log(search.getItems()); // affichage de tout les items en log
+  function redirect(url) {
+    window.open(url)
+  }
+
 </script>
 
 </html>
